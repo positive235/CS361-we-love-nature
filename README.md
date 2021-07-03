@@ -7,17 +7,15 @@ Users can react(Like or Dislike) to nature images by swiping left or right, or p
 
 (1)
 - Copyright file:"https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js" 
-- Copyright (c) 2021 All Rights Reserved
+- Copyright (c) 2020 All Rights Reserved
 - Author: Jakob Unnebäck
-- Date: Jul/02/2021 05:18 PM
 - Summary: react-tinder-card Advanced Example
 
 (2)
--Copyright file:"https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/App.css" 
--Copyright (c) 2021 All Rights Reserved
--Author: Jakob Unnebäck
--Date: Jul/02/2021 05:18 PM
--Summary: react-tinder-card CSS Example 
+- Copyright file:"https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/App.css" 
+- Copyright (c) 2020 All Rights Reserved
+- Author: Jakob Unnebäck
+- Summary: react-tinder-card CSS Example 
 
 ## Getting Started with Create React App
 
