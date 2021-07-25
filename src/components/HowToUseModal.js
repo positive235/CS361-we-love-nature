@@ -3,7 +3,7 @@ import { Header, Icon, Modal, List } from 'semantic-ui-react'
 import { FcLike } from 'react-icons/fc'
 import { AiFillDislike } from 'react-icons/ai'
 import { GrRefresh } from 'react-icons/gr'
-import { BiArrowBack } from 'react-icons/bi'
+//import { BiArrowBack } from 'react-icons/bi'
 
 function HowToUseModal() {
 
@@ -27,9 +27,9 @@ function HowToUseModal() {
         <List.Item>
           <List.Header>Swipe Right</List.Header>If you DISLIKE the image, swipe it to the right.
         </List.Item>
-        <List.Item>
+        {/* <List.Item>
           <List.Header><BiArrowBack /> BACK button</List.Header>Former image
-        </List.Item>
+        </List.Item> */}
         <List.Item>
           <List.Header><FcLike /> LIKE button</List.Header>If you LIKE the image, press this button!
         </List.Item>
@@ -49,10 +49,10 @@ function HowToUseModal() {
             <List.Header>Swipe images</List.Header>If you like an image and swipe the image to the LEFT, <FcLike /> will be added to the image.
             If you do NOT like an image and swipe the image to the RIGHT, <FcLike /> will be removed the image or not be added to the image.
           </List.Item>
-          <List.Item>
+          {/* <List.Item>
             <List.Header><BiArrowBack /> BACK button</List.Header>
             If you want to see the former nature image, press this 'Back' button.
-          </List.Item>
+          </List.Item> */}
           <List.Item>
             <List.Header><FcLike /> LIKE button</List.Header>
             If you like an image, press this 'Like' button. Then the image will be swiped to the left and <FcLike /> will be added to the image.

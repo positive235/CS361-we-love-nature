@@ -13,7 +13,7 @@ import HowToUseModal from './components/HowToUseModal'
 import { FcLike } from 'react-icons/fc'
 import { AiFillDislike } from 'react-icons/ai'
 import { GrRefresh } from 'react-icons/gr'
-import { BiArrowBack } from 'react-icons/bi'
+// import { BiArrowBack } from 'react-icons/bi'
 
 if (localStorage.getItem("photos")) {
   var db = JSON.parse(localStorage.getItem("photos"))
@@ -66,7 +66,6 @@ function App () {
     setLastDirection(direction)
     if (direction === 'left') db[index].liked = true
     if (direction === 'right') db[index].liked = false
-    //alreadyRemoved.push(nameToDelete)
   }
 
   const outOfFrame = (name) => {
@@ -92,13 +91,22 @@ function App () {
   }
 
   // const showOldImages = () => {
-    
-  //   const characterPlusOld = characters.concat(db.filter(data => alreadyRemoved[0] === data.name))
-  //   console.log(alreadyRemoved)
-  //   alreadyRemoved.pop()
-  //   console.log('characters:', characters)
-  //   console.log('characterPlusOld', characterPlusOld)
-  //   setCharacters(characterPlusOld)
+  //   let oldImageIncluded
+  //   if (alreadyRemoved.length > 0) {
+  //     if (characters.length > 0) {
+  //       oldImageIncluded = characters.concat(characters[characters.length - 1])
+  //       if (oldImageIncluded !== undefined && alreadyRemoved.length > 0) {
+  //         alreadyRemoved.pop()
+  //         setCharacters(oldImageIncluded)
+  //       } else {
+  //         window.location.reload()
+  //       }
+  //     } else {
+  //       window.location.reload()
+  //     }
+  //   } else {
+  //     window.location.reload()
+  //   }
   // }
 
   return (
@@ -120,13 +128,13 @@ function App () {
         )}
       </div>
       <div className='buttons'>
-        <Popup
+        {/* <Popup
           key={buttonDescription[0].name}
           header={buttonDescription[0].name}
-          trigger={<button><BiArrowBack /></button>}
+          trigger={<button onClick={() => showOldImages()}><BiArrowBack /></button>}
           content={buttonDescription[0].description}
           position='bottom left'
-        />
+        /> */}
         <Popup
           key={buttonDescription[1].name}
           header={buttonDescription[1].name}
