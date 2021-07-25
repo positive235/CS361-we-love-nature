@@ -10,9 +10,9 @@ import TinderCard from 'react-tinder-card'
 import { Popup } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import HowToUseModal from './components/HowToUseModal'
+import RefreshButton from './components/RefreshButton'
 import { FcLike } from 'react-icons/fc'
 import { AiFillDislike } from 'react-icons/ai'
-import { GrRefresh } from 'react-icons/gr'
 // import { BiArrowBack } from 'react-icons/bi'
 
 if (localStorage.getItem("photos")) {
@@ -86,9 +86,10 @@ function App () {
     }
   }
 
-  const refresh = () => {
-    window.location.reload()
-  }
+  // const refresh = () => {
+  //   setOpen(false)
+  //   window.location.reload()
+  // }
 
   // const showOldImages = () => {
   //   let oldImageIncluded
@@ -149,14 +150,8 @@ function App () {
           content={buttonDescription[2].description}
           position='bottom center'
         />
-
-        <Popup
-          key={buttonDescription[3].name}
-          header={buttonDescription[3].name}
-          trigger={<button onClick={() => refresh()}><GrRefresh /></button>}
-          content={buttonDescription[3].description}
-          position='bottom right'
-        />
+        <RefreshButton />
+        
       </div>
       {lastDirection === 'left' ?<h2 key={lastDirection} className='infoText'>You  <FcLike /></h2> : (lastDirection === 'right' ? <h2 key={lastDirection} className='infoText'>You  <AiFillDislike /></h2>:<h2 className='infoText'>Swipe left =<FcLike />, right = <AiFillDislike /> , or press a button</h2>)}
     </div>
