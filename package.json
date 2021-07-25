@@ -11,6 +11,8 @@
     "react-icons": "^4.2.0",
     "react-scripts": "4.0.3",
     "react-tinder-card": "^1.4.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

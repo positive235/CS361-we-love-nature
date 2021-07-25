@@ -100,7 +100,7 @@ h2 {
   justify-content: space-around;
 }
 
-.buttons button {
+.buttons button{
   flex-shrink: 0;
   padding: 10px;
   border-radius: 5px;
@@ -115,8 +115,26 @@ h2 {
   box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
 }
 
-.buttons button:hover {
+.buttons button:hover,
+.how-to-use:hover {
   background-color: #6973e3;
+}
+
+.how-to-use {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  flex-shrink: 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  background-color: #8890e6;
+  transition: 200ms;
+  margin: 0 20px;
+  font-weight: bolder;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
 }
 
 @keyframes popup {
