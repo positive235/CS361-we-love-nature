@@ -146,3 +146,48 @@ h2 {
   64%  { transform: scale(1,1) }
   100% { transform: scale(1,1) }
 }
+
+@media screen and (max-width: 425px) {
+  h1 {
+    position: absolute;
+    margin: auto;
+    top: 5%;
+  }
+
+  .how-to-use {
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  .cardContainer {
+    width: 90vw;
+    height: 300px;
+    
+  }
+  
+  .card {
+    width: 90vw;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+
+  .buttons button{
+    width: 60px;
+  }
+}
+
+@media screen and (max-width: 320px) and (max-height: 570px) {
+  h1 {
+    position: absolute;
+    top: 0;
+    left: 25px;
+  }
+}
+
+@media screen and (max-width: 285px) {
+  .infoText {
+    font-size: 16px;
+  }
+}

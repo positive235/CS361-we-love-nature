@@ -140,7 +140,7 @@ function App () {
           header={buttonDescription[1].name}
           trigger={<button onClick={() => swipe('left')}><FcLike /></button>}
           content={buttonDescription[1].description}
-          position='bottom center'
+          position='bottom left'
         />
         <Popup
           key={buttonDescription[2].name}
