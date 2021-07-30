@@ -27,7 +27,8 @@ function RefreshButton() {
         <Modal.Content>
           <p>
             By pressing 'Refresh' button, you will see NEW set of nature images.
-            And...you should wait for less than a minute to see new nature images...!
+            If you are not seeing new set of nature images, please try again...!
+            Sometimes, it could be caused by network connection issue. Sorry for that.
           </p>
         </Modal.Content>
         <Modal.Actions>

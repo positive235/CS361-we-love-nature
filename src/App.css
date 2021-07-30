@@ -65,7 +65,7 @@ h2 {
   width: 140vw;
   max-width: 500px;
   height: 350px;
-  box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+  /* box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30); */
   border-radius: 10px;
   background-size: cover;
   background-position: center;
@@ -76,11 +76,14 @@ h2 {
   height: 100%;
 }
 
-.card h3 {
+.card span {
   position: absolute;
   bottom: 0;
+  left: 0;
   margin: 10px;
   color: #fff;
+  font-size: 10px;
+  line-height: 10px;
 }
 
 .infoText {

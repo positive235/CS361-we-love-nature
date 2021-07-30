@@ -1,3 +1,7 @@
+// Author: Hae-Ji Park (github.com/positive235)
+// Date: Jul 2021
+// Summary: Nature image web scraping
+
 //Credits:
 // Copyright file:"https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js" 
 // Copyright (c) 2020 All Rights Reserved
@@ -13,7 +17,6 @@ import HowToUseModal from './components/HowToUseModal'
 import RefreshButton from './components/RefreshButton'
 import { FcLike } from 'react-icons/fc'
 import { AiFillDislike } from 'react-icons/ai'
-// import { BiArrowBack } from 'react-icons/bi'
 
 if (localStorage.getItem("photos")) {
   var db = JSON.parse(localStorage.getItem("photos"))
@@ -28,9 +31,79 @@ if (localStorage.getItem("photos")) {
       name: 'Trees',
       url: './img/trees.jpeg',
       liked: false
+    },
+    {
+      name: 'Flower',
+      url: './img/flower.jpeg',
+      liked: false
+    },
+    {
+      name: 'Flowers',
+      url: './img/flowers.jpeg',
+      liked: false
+    },
+    {
+      name: 'Goose and Flowers',
+      url: './img/goose-flowers.jpeg',
+      liked: false
+    },
+    {
+      name: 'Palm Trees',
+      url: './img/palm-trees.jpeg',
+      liked: false
+    },
+    {
+      name: 'Purple Flowers',
+      url: './img/purple-flowers.jpeg',
+      liked: false
+    },
+    {
+      name: 'Sunset',
+      url: './img/red-sky.jpeg',
+      liked: false
+    },
+    {
+      name: 'Seeds',
+      url: './img/seeds.jpeg',
+      liked: false
+    },
+    {
+      name: 'Waterfall',
+      url: './img/waterfall.jpeg',
+      liked: false
     }
   ]
 }
+
+var getImgUrl = (url, callback) => {
+  var xhr = new XMLHttpRequest()
+  xhr.open('GET', url, true)
+  xhr.responseType = 'json'
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      callback(null, xhr.response)
+    } else {
+      callback(xhr.status)
+    }
+  }
+  xhr.send();
+}
+
+getImgUrl('https://nature-image-web-scraper.wl.r.appspot.com/a-set-of-nature-images',
+      (err, data) => {
+      if (err !== null) {
+        console.log(err)
+      } else {
+        data.forEach((item) => {
+          db.push({
+            name: item,
+            url: item,
+            liked: false
+          })
+        })
+      }
+  }
+)
 
 var alreadyRemoved = []
 let charactersState = db
@@ -39,6 +112,7 @@ function App () {
   localStorage.setItem("photos", JSON.stringify(db))
   const [characters, setCharacters] = useState(db)
   const [lastDirection, setLastDirection] = useState()
+  //const [open, setOpen] = useState(false)
 
   const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
 
@@ -86,30 +160,6 @@ function App () {
     }
   }
 
-  // const refresh = () => {
-  //   setOpen(false)
-  //   window.location.reload()
-  // }
-
-  // const showOldImages = () => {
-  //   let oldImageIncluded
-  //   if (alreadyRemoved.length > 0) {
-  //     if (characters.length > 0) {
-  //       oldImageIncluded = characters.concat(characters[characters.length - 1])
-  //       if (oldImageIncluded !== undefined && alreadyRemoved.length > 0) {
-  //         alreadyRemoved.pop()
-  //         setCharacters(oldImageIncluded)
-  //       } else {
-  //         window.location.reload()
-  //       }
-  //     } else {
-  //       window.location.reload()
-  //     }
-  //   } else {
-  //     window.location.reload()
-  //   }
-  // }
-
   return (
     <div className="App">
       <HowToUseModal />
@@ -123,19 +173,12 @@ function App () {
         {characters.map((character, index) =>
           <TinderCard ref={childRefs[index]} className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
             <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
-              <h3>{character.liked ? <FcLike />:" "} {character.name}</h3>
+              <span>{character.liked ? <FcLike />:" "} {character.name}</span>
             </div>
           </TinderCard>
         )}
       </div>
       <div className='buttons'>
-        {/* <Popup
-          key={buttonDescription[0].name}
-          header={buttonDescription[0].name}
-          trigger={<button onClick={() => showOldImages()}><BiArrowBack /></button>}
-          content={buttonDescription[0].description}
-          position='bottom left'
-        /> */}
         <Popup
           key={buttonDescription[1].name}
           header={buttonDescription[1].name}
