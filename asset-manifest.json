@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/CS361-we-love-nature/static/css/main.6b196f70.chunk.css",
+    "main.js": "/CS361-we-love-nature/static/js/main.6122163f.chunk.js",
+    "main.js.map": "/CS361-we-love-nature/static/js/main.6122163f.chunk.js.map",
+    "runtime-main.js": "/CS361-we-love-nature/static/js/runtime-main.1f65ca54.js",
+    "runtime-main.js.map": "/CS361-we-love-nature/static/js/runtime-main.1f65ca54.js.map",
+    "static/css/2.5114b63f.chunk.css": "/CS361-we-love-nature/static/css/2.5114b63f.chunk.css",
+    "static/js/2.b802015d.chunk.js": "/CS361-we-love-nature/static/js/2.b802015d.chunk.js",
+    "static/js/2.b802015d.chunk.js.map": "/CS361-we-love-nature/static/js/2.b802015d.chunk.js.map",
+    "static/js/3.1a407d59.chunk.js": "/CS361-we-love-nature/static/js/3.1a407d59.chunk.js",
+    "static/js/3.1a407d59.chunk.js.map": "/CS361-we-love-nature/static/js/3.1a407d59.chunk.js.map",
+    "index.html": "/CS361-we-love-nature/index.html",
+    "static/css/2.5114b63f.chunk.css.map": "/CS361-we-love-nature/static/css/2.5114b63f.chunk.css.map",
+    "static/css/main.6b196f70.chunk.css.map": "/CS361-we-love-nature/static/css/main.6b196f70.chunk.css.map",
+    "static/js/2.b802015d.chunk.js.LICENSE.txt": "/CS361-we-love-nature/static/js/2.b802015d.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/CS361-we-love-nature/static/media/outline-icons.ddae9b1b.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1f65ca54.js",
+    "static/css/2.5114b63f.chunk.css",
+    "static/js/2.b802015d.chunk.js",
+    "static/css/main.6b196f70.chunk.css",
+    "static/js/main.6122163f.chunk.js"
+  ]
+}
