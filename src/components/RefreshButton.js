@@ -18,7 +18,7 @@ function RefreshButton() {
           onOpen={() => setOpen(true)}
           open={open}
           size='small'
-          trigger={<button><GrRefresh /></button>}
+          trigger={<button className="refreshButton"><GrRefresh /></button>}
         >
         <Header icon>
           <Icon name='question' />
@@ -27,8 +27,7 @@ function RefreshButton() {
         <Modal.Content>
           <p>
             By pressing 'Refresh' button, you will see NEW set of nature images.
-            If you are not seeing new set of nature images, please try again...!
-            Sometimes, it could be caused by network connection issue. Sorry for that.
+            If you are seeing the same images, please wait and try again...! Sorry for the inconvenience.
           </p>
         </Modal.Content>
         <Modal.Actions>

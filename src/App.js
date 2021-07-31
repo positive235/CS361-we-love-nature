@@ -21,6 +21,7 @@ import { AiFillDislike } from 'react-icons/ai'
 if (localStorage.getItem("photos")) {
   var db = JSON.parse(localStorage.getItem("photos"))
 } else {
+  // default nature images (not from nature image web scraping)
   db = [
     {
       name: 'Sea',
@@ -43,11 +44,6 @@ if (localStorage.getItem("photos")) {
       liked: false
     },
     {
-      name: 'Goose and Flowers',
-      url: './img/goose-flowers.jpeg',
-      liked: false
-    },
-    {
       name: 'Palm Trees',
       url: './img/palm-trees.jpeg',
       liked: false
@@ -63,11 +59,6 @@ if (localStorage.getItem("photos")) {
       liked: false
     },
     {
-      name: 'Seeds',
-      url: './img/seeds.jpeg',
-      liked: false
-    },
-    {
       name: 'Waterfall',
       url: './img/waterfall.jpeg',
       liked: false
@@ -75,44 +66,38 @@ if (localStorage.getItem("photos")) {
   ]
 }
 
-var getImgUrl = (url, callback) => {
-  var xhr = new XMLHttpRequest()
-  xhr.open('GET', url, true)
-  xhr.responseType = 'json'
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      callback(null, xhr.response)
-    } else {
-      callback(xhr.status)
-    }
-  }
-  xhr.send();
-}
-
-getImgUrl('https://nature-image-web-scraper.wl.r.appspot.com/a-set-of-nature-images',
-      (err, data) => {
-      if (err !== null) {
-        console.log(err)
-      } else {
-        data.forEach((item) => {
-          db.push({
-            name: item,
-            url: item,
-            liked: false
-          })
-        })
-      }
-  }
-)
 
 var alreadyRemoved = []
 let charactersState = db
 
 function App () {
-  localStorage.setItem("photos", JSON.stringify(db))
   const [characters, setCharacters] = useState(db)
   const [lastDirection, setLastDirection] = useState()
-  //const [open, setOpen] = useState(false)
+  const [styleChange, setStyleChange] = useState(false)
+
+  async function natureImageScraper() {
+    const response = await fetch("https://nature-image-web-scraper.wl.r.appspot.com/a-set-of-nature-images", {}) // type: Promise<Response>
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.text()
+  }
+  
+  (async() => {
+    var result = await natureImageScraper()
+    db = [];
+    result = JSON.parse(result)
+    result.forEach(function(item) {
+      db.push({
+        name: item,
+        url: item,
+        liked: false
+      })
+    })
+    localStorage.setItem("photos", JSON.stringify(db))
+  })()
+  
+  db = JSON.parse(localStorage.getItem("photos"))
 
   const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
 
@@ -123,15 +108,19 @@ function App () {
     },
     {
       name: 'Like',
-      description: 'If you like this image, press this button! Then the image will be swiped to the left and ❤️ will be added on the bottom of the image',
+      description: 'If you like this image, press this button! Then the image will be swiped to the left',
     },
     {
       name: 'Dislike',
       description: 'If you do NOT like this image, press this button! Then the image will be swiped to the right',
     },
     {
+      name: 'Change Style',
+      description: 'If you want to change the style of image, press this button!',
+    },
+    {
       name: 'Refresh',
-      description: 'New set of nature images will be shown! But...you should wait for less than a minute to see new nature images...!',      
+      description: 'New set of nature images will be shown! But...sometimes it shows the same images, please wait and try again...!', 
     }
   ]
 
@@ -148,16 +137,24 @@ function App () {
   }
 
   const swipe = (dir) => {
-   
+    setStyleChange(false)
     const cardsLeft = characters.filter(person => !alreadyRemoved.includes(person.name))
     if (cardsLeft.length) {
       const toBeRemoved = cardsLeft[cardsLeft.length - 1].name // Find the card object to be removed
       const index = db.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
       alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
+      if (childRefs[index] === undefined) {
+        alert("Sorry! Your new set of images has been loaded now.")
+        window.location.reload()
+      }
       childRefs[index].current.swipe(dir) // Swipe the card
-      if (dir === 'left') db[index].liked = true
-      if (dir === 'right') db[index].liked = false
+      // if (dir === 'left') db[index].liked = true
+      // if (dir === 'right') db[index].liked = false
     }
+  }
+
+  const imageStyleChange = () => {
+    setStyleChange(true)
   }
 
   return (
@@ -166,15 +163,20 @@ function App () {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet" />
-      
+      {/* Wesley(One of my teammates)'s microservice(CS361 requirement): https://github.com/WesDH/ImageMicroservice_v2 */}
+      <script src="https://weshavens.info/CS361_image/wesMS_helper.js"></script>
       <h1>We <FcLike/> Nature</h1>
 
       <div className='cardContainer'>
         {characters.map((character, index) =>
           <TinderCard ref={childRefs[index]} className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
-            <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
-              <span>{character.liked ? <FcLike />:" "} {character.name}</span>
-            </div>
+            { character.url.startsWith('https://') && styleChange ? 
+            <div service="wesMS" style={{ backgroundImage: 'url(' + character.url +'?brightness=-5&contrast=42&exposure=98&shadows=28&highlights=73&hue=36&saturation=-8&lightness=51)' }} className='card'>
+              <span>{character.name}</span>
+            </div> 
+              : <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
+              <span>{character.name}</span>
+            </div>} 
           </TinderCard>
         )}
       </div>
@@ -191,6 +193,13 @@ function App () {
           header={buttonDescription[2].name}
           trigger={<button onClick={() => swipe('right')}><AiFillDislike /></button>}
           content={buttonDescription[2].description}
+          position='bottom center'
+        />
+        <Popup
+          key={buttonDescription[3].name}
+          header={buttonDescription[3].name}
+          trigger={<button onClick={() => imageStyleChange()}>Style</button>}
+          content={buttonDescription[3].description}
           position='bottom center'
         />
         <RefreshButton />

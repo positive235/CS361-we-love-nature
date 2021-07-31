@@ -37,6 +37,9 @@ function HowToUseModal() {
           <List.Header><AiFillDislike /> DISLIKE button</List.Header>If you DISLIKE the image, press this button!
         </List.Item>
         <List.Item>
+          <List.Header>STYLE Button</List.Header>If you want to change the style of image, press this button!
+        </List.Item>
+        <List.Item>
           <List.Header><GrRefresh /> REFRESH button</List.Header>New set of nature images
         </List.Item>
       </List>
@@ -46,26 +49,25 @@ function HowToUseModal() {
       <Modal.Content>
         <List>
           <List.Item>
-            <List.Header>Swipe images</List.Header>If you like an image and swipe the image to the LEFT, <FcLike /> will be added to the image.
-            If you do NOT like an image and swipe the image to the RIGHT, <FcLike /> will be removed the image or not be added to the image.
+            <List.Header>Swipe images</List.Header>If you like an image, swipe the image to the LEFT.
+            If you do NOT like an image, swipe the image to the RIGHT
           </List.Item>
-          {/* <List.Item>
-            <List.Header><BiArrowBack /> BACK button</List.Header>
-            If you want to see the former nature image, press this 'Back' button.
-          </List.Item> */}
           <List.Item>
             <List.Header><FcLike /> LIKE button</List.Header>
-            If you like an image, press this 'Like' button. Then the image will be swiped to the left and <FcLike /> will be added to the image.
+            If you like an image, press this 'Like' button. Then the image will be swiped to the left.
           </List.Item>
           <List.Item>
             <List.Header><AiFillDislike /> DISLIKE button</List.Header>
-            If you do NOT like an image, press this 'Dislike' button. 
-            Then the image will be swiped to the right and <FcLike /> will be removed from the image or not be added to the image
+            If you do NOT like an image, press this 'Dislike' button. Then the image will be swiped to the right.
+          </List.Item>
+          <List.Item>
+            <List.Header>STYLE Button</List.Header>
+            If you want to change the style of image, press this 'Style' button.
           </List.Item>
           <List.Item>
             <List.Header><GrRefresh /> REFRESH button</List.Header>
-            New set of nature images will be shown! If you are not seeing new set of nature images, please try again...!
-            Sometimes, it could be caused by network connection issue. Sorry for that.
+            New set of nature images will be shown! If you are not seeing new set of nature images, please wait and try again...!
+            Sorry for the inconvenience.
           </List.Item>
         </List>
       </Modal.Content>
