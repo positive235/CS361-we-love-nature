@@ -1,7 +1,16 @@
-# CS361 Project - "We Love Nature" (IN PROGRESS)
+# CS361 Project - "We Love Nature"
 
 "We Love Nature" for CS361(Software Engineering 1) project. 
-Users can react(Like or Dislike) to nature images by swiping left or right, or pressing a Like/Dislike button. 
+
+1. Users can react(Like or Dislike) to nature images by swiping left or right, or pressing a Like/Dislike button. 
+
+2. Users can see new set of nature images with Refresh button by using my microservice(Nature Image Web Scraper(https://github.com/positive235/CS361-image-web-scraper)). 
+
+3. Users can style the image with Style button by using my teammate's microservice(https://github.com/WesDH/ImageMicroservice_v2). 
+
+## Try it out
+
+https://positive235.github.io/CS361-we-love-nature/
 
 ## Credits
 
