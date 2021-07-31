@@ -8,9 +8,29 @@
 
 3. Users can style the image with Style button by using my teammate's microservice(https://github.com/WesDH/ImageMicroservice_v2). 
 
-## Try it out
+## Try it out (maybe it takes a while to load)
 
 https://positive235.github.io/CS361-we-love-nature/
+
+## Screenshots
+
+### HomePage
+![basic](screenshots/basic.png)
+
+### Tooltips to breifly explain the features
+![tooltip](screenshots/tooltip.png)
+
+### Style the image 
+![after styling](screenshots/afterStyling.png)
+
+### How To Use
+![how to use](screenshots/how-to-use.png)
+
+### Ask users when pressing a Refresh button
+![ask users when pressing a Refresh button](screenshots/refresh.png)
+
+### A new set of nature images after Refresh button
+![after Refresh button](screenshots/afterRefresh.png)
 
 ## Credits
 
