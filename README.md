@@ -6,7 +6,7 @@
 
 2. Users can see new set of nature images with Refresh button by using my microservice(Nature Image Web Scraper(https://github.com/positive235/CS361-image-web-scraper)). 
 
-3. Users can style the image with Style button by using my teammate's microservice(https://github.com/WesDH/ImageMicroservice_v2). 
+3. Users can style the image with Style button 
 
 ## Try it out (maybe it takes a while to load)
 

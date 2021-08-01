@@ -153,6 +153,30 @@ function App () {
     }
   }
 
+  // const refresh = () => {
+  //   async function natureImageScraper() {
+  //     const response = await fetch("https://nature-image-web-scraper.wl.r.appspot.com/a-set-of-nature-images", {}) // type: Promise<Response>
+  //     if (!response.ok) {
+  //       throw Error(response.statusText)
+  //     }
+  //     return response.text()
+  //   }
+    
+  //   (async() => {
+  //     var result = await natureImageScraper()
+  //     db = [];
+  //     result = JSON.parse(result)
+  //     result.forEach(function(item) {
+  //       db.push({
+  //         name: item,
+  //         url: item,
+  //         liked: false
+  //       })
+  //     })
+  //     localStorage.setItem("photos", JSON.stringify(db))
+  //   })()
+  // }
+
   const imageStyleChange = () => {
     setStyleChange(true)
   }
@@ -163,17 +187,14 @@ function App () {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet" />
-      {/* Wesley(One of my teammates)'s microservice(CS361 requirement): https://github.com/WesDH/ImageMicroservice_v2 */}
-      <script src="https://weshavens.info/CS361_image/wesMS_helper.js"></script>
       <h1>We <FcLike/> Nature</h1>
 
       <div className='cardContainer'>
         {characters.map((character, index) =>
           <TinderCard ref={childRefs[index]} className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
             { character.url.startsWith('https://') && styleChange ? 
-            <div service="wesMS" style={{ backgroundImage: 'url(' + character.url +'?brightness=-5&contrast=42&exposure=98&shadows=28&highlights=73&hue=36&saturation=-8&lightness=51)' }} className='card'>
-              <span>{character.name}</span>
-            </div> 
+            <div style={{ backgroundImage: 'url(' + character.url + '?brightness=-5&contrast=42&exposure=98&shadows=28&highlights=73&hue=36&saturation=-8&lightness=51)'}} className='card'>
+              <span>{character.name}</span></div> 
               : <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
               <span>{character.name}</span>
             </div>} 
