@@ -1,6 +1,8 @@
 // Author: Hae-Ji Park (github.com/positive235)
 // Date: Jul 2021
-// Summary: Nature image web scraping
+// Summary: 'We Love Nature' - Reacting(Like or Dislike) to nature images 
+// by swiping left or right, or pressing a button, Seeing new set of nature images, 
+// Styling nature images
 
 //Credits:
 // Copyright file:"https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js" 

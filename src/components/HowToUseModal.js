@@ -1,3 +1,7 @@
+// Author: Hae-Ji Park (github.com/positive235)
+// Date: Jul 2021 
+// Summary: How to use modal component
+
 import React, { useState } from 'react'
 import { Header, Icon, Modal, List } from 'semantic-ui-react'
 import { FcLike } from 'react-icons/fc'

@@ -1,3 +1,7 @@
+// Author: Hae-Ji Park (github.com/positive235)
+// Date: Jul 2021 
+// Summary: Refresh button component
+
 import React, { useState } from 'react'
 import { Header, Icon, Modal, Button } from 'semantic-ui-react'
 import { GrRefresh } from 'react-icons/gr'
@@ -27,7 +31,8 @@ function RefreshButton() {
         <Modal.Content>
           <p>
             By pressing 'Refresh' button, you will see NEW set of nature images.
-            If you are seeing the same images, please wait and try again...! Sorry for the inconvenience.
+            If you are seeing the same images, please wait and 
+            try again...! Sorry for the inconvenience.
           </p>
         </Modal.Content>
         <Modal.Actions>
