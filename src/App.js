@@ -142,42 +142,19 @@ function App () {
     setStyleChange(false)
     const cardsLeft = characters.filter(person => !alreadyRemoved.includes(person.name))
     if (cardsLeft.length) {
-      const toBeRemoved = cardsLeft[cardsLeft.length - 1].name // Find the card object to be removed
-      const index = db.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
-      alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
+      // Find the card object to be removed
+      const toBeRemoved = cardsLeft[cardsLeft.length - 1].name
+      // Find the index of which to make the reference to 
+      const index = db.map(person => person.name).indexOf(toBeRemoved)
+      // Make sure the next card gets removed next time if this card do not have time to exit the screen
+      alreadyRemoved.push(toBeRemoved) 
       if (childRefs[index] === undefined) {
         alert("Sorry! Your new set of images has been loaded now.")
         window.location.reload()
       }
       childRefs[index].current.swipe(dir) // Swipe the card
-      // if (dir === 'left') db[index].liked = true
-      // if (dir === 'right') db[index].liked = false
     }
   }
-
-  // const refresh = () => {
-  //   async function natureImageScraper() {
-  //     const response = await fetch("https://nature-image-web-scraper.wl.r.appspot.com/a-set-of-nature-images", {}) // type: Promise<Response>
-  //     if (!response.ok) {
-  //       throw Error(response.statusText)
-  //     }
-  //     return response.text()
-  //   }
-    
-  //   (async() => {
-  //     var result = await natureImageScraper()
-  //     db = [];
-  //     result = JSON.parse(result)
-  //     result.forEach(function(item) {
-  //       db.push({
-  //         name: item,
-  //         url: item,
-  //         liked: false
-  //       })
-  //     })
-  //     localStorage.setItem("photos", JSON.stringify(db))
-  //   })()
-  // }
 
   const imageStyleChange = () => {
     setStyleChange(true)
