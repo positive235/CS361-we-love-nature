@@ -20,54 +20,55 @@ import RefreshButton from './components/RefreshButton'
 import { FcLike } from 'react-icons/fc'
 import { AiFillDislike } from 'react-icons/ai'
 
+const defaultImages = [
+  {
+    name: 'Sea',
+    url: './img/sea.jpeg',
+    liked: false
+  },
+  {
+    name: 'Trees',
+    url: './img/trees.jpeg',
+    liked: false
+  },
+  {
+    name: 'Flower',
+    url: './img/flower.jpeg',
+    liked: false
+  },
+  {
+    name: 'Flowers',
+    url: './img/flowers.jpeg',
+    liked: false
+  },
+  {
+    name: 'Palm Trees',
+    url: './img/palm-trees.jpeg',
+    liked: false
+  },
+  {
+    name: 'Purple Flowers',
+    url: './img/purple-flowers.jpeg',
+    liked: false
+  },
+  {
+    name: 'Sunset',
+    url: './img/red-sky.jpeg',
+    liked: false
+  },
+  {
+    name: 'Waterfall',
+    url: './img/waterfall.jpeg',
+    liked: false
+  }
+]
+
 if (localStorage.getItem("photos")) {
   var db = JSON.parse(localStorage.getItem("photos"))
 } else {
   // default nature images (not from nature image web scraping)
-  db = [
-    {
-      name: 'Sea',
-      url: './img/sea.jpeg',
-      liked: false
-    },
-    {
-      name: 'Trees',
-      url: './img/trees.jpeg',
-      liked: false
-    },
-    {
-      name: 'Flower',
-      url: './img/flower.jpeg',
-      liked: false
-    },
-    {
-      name: 'Flowers',
-      url: './img/flowers.jpeg',
-      liked: false
-    },
-    {
-      name: 'Palm Trees',
-      url: './img/palm-trees.jpeg',
-      liked: false
-    },
-    {
-      name: 'Purple Flowers',
-      url: './img/purple-flowers.jpeg',
-      liked: false
-    },
-    {
-      name: 'Sunset',
-      url: './img/red-sky.jpeg',
-      liked: false
-    },
-    {
-      name: 'Waterfall',
-      url: './img/waterfall.jpeg',
-      liked: false
-    }
-  ]
+  db = defaultImages
 }
-
 
 var alreadyRemoved = []
 let charactersState = db
@@ -99,7 +100,12 @@ function App () {
     localStorage.setItem("photos", JSON.stringify(db))
   })()
   
-  db = JSON.parse(localStorage.getItem("photos"))
+  if (localStorage.getItem("photos")) {
+    db = JSON.parse(localStorage.getItem("photos"))
+  } else {
+    // default nature images (not from nature image web scraping)
+    db = defaultImages
+  }
 
   const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
 
@@ -114,7 +120,8 @@ function App () {
     },
     {
       name: 'Dislike',
-      description: 'If you do NOT like this image, press this button! Then the image will be swiped to the right',
+      description: 
+      'If you do NOT like this image, press this button! Then the image will be swiped to the right',
     },
     {
       name: 'Change Style',
@@ -122,7 +129,8 @@ function App () {
     },
     {
       name: 'Refresh',
-      description: 'New set of nature images will be shown! But...sometimes it shows the same images, please wait and try again...!', 
+      description: 
+      'New set of nature images will be shown! But..sometimes it shows the same images, please wait and try again..!', 
     }
   ]
 
@@ -170,9 +178,16 @@ function App () {
 
       <div className='cardContainer'>
         {characters.map((character, index) =>
-          <TinderCard ref={childRefs[index]} className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+          <TinderCard 
+            ref={childRefs[index]} 
+            className='swipe' 
+            key={character.name} 
+            onSwipe={(dir) => swiped(dir, character.name)} 
+            onCardLeftScreen={() => outOfFrame(character.name)}>
             { character.url.startsWith('https://') && styleChange ? 
-            <div style={{ backgroundImage: 'url(' + character.url + '?brightness=-5&contrast=42&exposure=98&shadows=28&highlights=73&hue=36&saturation=-8&lightness=51)'}} className='card'>
+            <div style={{ backgroundImage: 'url(' + character.url 
+              + '?brightness=-5&contrast=42&exposure=98&shadows=28&highlights=73&hue=36&saturation=-8&lightness=51)'}} 
+              className='card'>
               <span>{character.name}</span></div> 
               : <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
               <span>{character.name}</span>
@@ -205,7 +220,13 @@ function App () {
         <RefreshButton />
         
       </div>
-      {lastDirection === 'left' ?<h2 key={lastDirection} className='infoText'>You  <FcLike /></h2> : (lastDirection === 'right' ? <h2 key={lastDirection} className='infoText'>You  <AiFillDislike /></h2>:<h2 className='infoText'>Swipe left =<FcLike />, right = <AiFillDislike /> , or press a button</h2>)}
+      {lastDirection === 'left' ?
+      <h2 
+        key={lastDirection} 
+        className='infoText'>You  <FcLike /></h2> 
+        : (lastDirection === 'right' ? 
+        <h2 key={lastDirection} className='infoText'>You  <AiFillDislike /></h2>
+          : <h2 className='infoText'>Swipe left =<FcLike />, right = <AiFillDislike /> , or press a button</h2>)}
     </div>
   )
 }

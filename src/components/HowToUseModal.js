@@ -58,7 +58,8 @@ function HowToUseModal() {
           </List.Item>
           <List.Item>
             <List.Header><AiFillDislike /> DISLIKE button</List.Header>
-            If you do NOT like an image, press this 'Dislike' button. Then the image will be swiped to the right.
+            If you do NOT like an image, press this 'Dislike' button. 
+            Then the image will be swiped to the right.
           </List.Item>
           <List.Item>
             <List.Header>STYLE Button</List.Header>
@@ -66,7 +67,8 @@ function HowToUseModal() {
           </List.Item>
           <List.Item>
             <List.Header><GrRefresh /> REFRESH button</List.Header>
-            New set of nature images will be shown! If you are not seeing new set of nature images, please wait and try again...!
+            New set of nature images will be shown! 
+            If you are not seeing new set of nature images, please wait and try again...!
             Sorry for the inconvenience.
           </List.Item>
         </List>
