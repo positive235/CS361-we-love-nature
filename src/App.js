@@ -20,45 +20,55 @@ import RefreshButton from './components/RefreshButton'
 import { FcLike } from 'react-icons/fc'
 import { AiFillDislike } from 'react-icons/ai'
 
-const defaultImages = [
+import waterfall from './img/waterfall.jpeg'
+import sea from './img/sea.jpeg'
+import trees from './img/trees.jpeg'
+import flower from './img/flower.jpeg'
+import flowers from './img/flowers.jpeg'
+import palmTrees from './img/palm-trees.jpeg'
+import purpleFlowers from './img/purple-flowers.jpeg'
+import sunset from './img/red-sky.jpeg'
+
+
+const DEFAULT_IMAGES = [
   {
     name: 'Sea',
-    url: './img/sea.jpeg',
+    url: sea,
     liked: false
   },
   {
     name: 'Trees',
-    url: './img/trees.jpeg',
+    url: trees,
     liked: false
   },
   {
     name: 'Flower',
-    url: './img/flower.jpeg',
+    url: flower,
     liked: false
   },
   {
     name: 'Flowers',
-    url: './img/flowers.jpeg',
+    url: flowers,
     liked: false
   },
   {
     name: 'Palm Trees',
-    url: './img/palm-trees.jpeg',
+    url: palmTrees,
     liked: false
   },
   {
     name: 'Purple Flowers',
-    url: './img/purple-flowers.jpeg',
+    url: purpleFlowers,
     liked: false
   },
   {
     name: 'Sunset',
-    url: './img/red-sky.jpeg',
+    url: sunset,
     liked: false
   },
   {
     name: 'Waterfall',
-    url: './img/waterfall.jpeg',
+    url: waterfall,
     liked: false
   }
 ]
@@ -67,7 +77,7 @@ if (localStorage.getItem("photos")) {
   var db = JSON.parse(localStorage.getItem("photos"))
 } else {
   // default nature images (not from nature image web scraping)
-  db = defaultImages
+  db = DEFAULT_IMAGES
 }
 
 var alreadyRemoved = []
@@ -78,8 +88,30 @@ function App () {
   const [lastDirection, setLastDirection] = useState()
   const [styleChange, setStyleChange] = useState(false)
 
+  // Image manipulation microservice provided by Wesley Havens(CS361 Teammate)
+  fetch ('https://www.weshavens.info:443/uploadV2',
+    {
+        headers:
+            {
+                'Content-type' : 'application/json'
+            },
+        method: 'POST',
+        body : JSON.stringify(
+            {
+                url: 'https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/a4b33886128681.5d909dad47ded.jpg',
+                path: '/HJ-backgroundImage/',
+                file: 'gradient.jpg'
+            }
+        )
+    }
+  )
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('root').style.backgroundImage = `url(${data.url})`
+  })
+  
   async function natureImageScraper() {
-    const response = await fetch("https://nature-image-web-scraper.wl.r.appspot.com/a-set-of-nature-images", {}) // type: Promise<Response>
+    const response = await fetch("https://nature-image-web-scraper.wl.r.appspot.com/a-set-of-nature-images", {}) 
     if (!response.ok) {
       throw Error(response.statusText)
     }
@@ -104,7 +136,7 @@ function App () {
     db = JSON.parse(localStorage.getItem("photos"))
   } else {
     // default nature images (not from nature image web scraping)
-    db = defaultImages
+    db = DEFAULT_IMAGES
   }
 
   const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
@@ -125,7 +157,8 @@ function App () {
     },
     {
       name: 'Change Style',
-      description: 'If you want to change the style of image, press this button!',
+      description: 
+      'If you want to change the style of image(**only the images which have URL**), press this button!',
     },
     {
       name: 'Refresh',

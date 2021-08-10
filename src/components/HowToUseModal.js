@@ -37,7 +37,8 @@ function HowToUseModal() {
           <List.Header><AiFillDislike /> DISLIKE button</List.Header>If you DISLIKE the image, press this button!
         </List.Item>
         <List.Item>
-          <List.Header>STYLE Button</List.Header>If you want to change the style of image, press this button!
+          <List.Header>STYLE Button</List.Header>
+          If you want to change the style of image **only the images which have URL**, press this button!
         </List.Item>
         <List.Item>
           <List.Header><GrRefresh /> REFRESH button</List.Header>New set of nature images
@@ -63,7 +64,7 @@ function HowToUseModal() {
           </List.Item>
           <List.Item>
             <List.Header>STYLE Button</List.Header>
-            If you want to change the style of image, press this 'Style' button.
+            If you want to change the style of image **only the images which have URL**, press this 'Style' button.
           </List.Item>
           <List.Item>
             <List.Header><GrRefresh /> REFRESH button</List.Header>
