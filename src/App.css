@@ -176,12 +176,43 @@ h2 {
     width: 90vw;
     height: 300px;
   }
+
+  .card span {    
+    font-size: 8px;
+    line-height: 8px;
+  }
+
+  .buttons button {
+    width: 60px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .buttons button {
+    margin: 0 18px;
+  }
+
+  .card span {    
+    font-size: 7px;
+    line-height: 7px;
+  }
 }
 
 @media screen and (max-width: 320px) {
-
   .buttons button{
-    width: 60px;
+    font-size: 15px;
+    padding: 7px;
+    width: 50px;
+    margin: 0 12px;
+  }
+
+  .card span {    
+    font-size: 5px;
+    line-height: 5px;
+  }
+
+  .infoText {
+    font-size: 18px;
   }
 }
 
@@ -196,5 +227,11 @@ h2 {
 @media screen and (max-width: 285px) {
   .infoText {
     font-size: 16px;
+  }
+
+  .buttons button{
+    font-size: 12px;
+    width: 50px;
+    margin: 0 10px;
   }
 }
