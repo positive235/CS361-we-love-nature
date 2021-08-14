@@ -8,6 +8,10 @@
 
 3. Users can style the image with Style button 
 
+## Project Showcase Video (about 3 mins)
+
+https://youtu.be/YHwwyDte0tc
+
 ## Try it out (maybe it takes a while to load)
 
 https://positive235.github.io/CS361-we-love-nature/
