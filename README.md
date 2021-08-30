@@ -8,7 +8,7 @@
 
 3. Users can style the image with Style button 
 
-(Currently, a background image comes from other OSU student's image microservice (https://github.com/WesDH/ImageMicroservice_v2)) - so, it takes a while to load the background image.)
+(Currently, a background image comes from other OSU student's image microservice (https://github.com/WesDH/ImageMicroservice_v2) - so, it takes a while to load the background image.)
 
 ## Project Showcase Video (about 3 mins)
 
