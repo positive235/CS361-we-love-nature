@@ -69,8 +69,7 @@ function HowToUseModal() {
           <List.Item>
             <List.Header><GrRefresh /> REFRESH button</List.Header>
             New set of nature images will be shown! 
-            If you are not seeing new set of nature images, please wait and try again...!
-            Sorry for the inconvenience.
+            But you need to wait for seconds to see the new images.
           </List.Item>
         </List>
       </Modal.Content>

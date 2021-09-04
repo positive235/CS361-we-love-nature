@@ -8,15 +8,18 @@
 
 3. Users can style the image with Style button 
 
-(Currently, a background image comes from other OSU student's image microservice (https://github.com/WesDH/ImageMicroservice_v2) - so, it takes a while to load the background image.)
-
-## Project Showcase Video (about 3 mins)
-
-https://youtu.be/YHwwyDte0tc
 
 ## Try it out (maybe it takes a while to load)
 
 https://positive235.github.io/CS361-we-love-nature/
+
+## How To Run
+
+```
+cd CS361-we-love-nature
+npm i
+npm start
+```
 
 ## Screenshots
 
@@ -51,14 +54,3 @@ https://positive235.github.io/CS361-we-love-nature/
 - Copyright (c) 2020 All Rights Reserved
 - Author: Jakob Unnebäck
 - Summary: react-tinder-card CSS Example 
-
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

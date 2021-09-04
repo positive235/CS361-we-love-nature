@@ -13,13 +13,17 @@
 import './App.css'
 import React, { useState, useMemo } from 'react'
 import TinderCard from 'react-tinder-card'
-import { Popup } from 'semantic-ui-react'
+
+import { Popup, Header, Icon, Modal, Button, Loader } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
+
 import HowToUseModal from './components/HowToUseModal'
-import RefreshButton from './components/RefreshButton'
+
 import { FcLike } from 'react-icons/fc'
 import { AiFillDislike } from 'react-icons/ai'
+import { GrRefresh } from 'react-icons/gr'
 
+// Default images
 import waterfall from './img/waterfall.jpeg'
 import sea from './img/sea.jpeg'
 import trees from './img/trees.jpeg'
@@ -87,28 +91,9 @@ function App () {
   const [characters, setCharacters] = useState(db)
   const [lastDirection, setLastDirection] = useState()
   const [styleChange, setStyleChange] = useState(false)
-
-  // Image manipulation microservice provided by Wesley Havens(CS361 Teammate)
-  fetch ('https://www.weshavens.info:443/uploadV2',
-    {
-        headers:
-            {
-                'Content-type' : 'application/json'
-            },
-        method: 'POST',
-        body : JSON.stringify(
-            {
-                url: 'https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/a4b33886128681.5d909dad47ded.jpg',
-                path: '/HJ-backgroundImage/',
-                file: 'gradient.jpg'
-            }
-        )
-    }
-  )
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('root').style.backgroundImage = `url(${data.url})`
-  })
+  const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+  
   
   async function natureImageScraper() {
     const response = await fetch("https://nature-image-web-scraper.wl.r.appspot.com/a-set-of-nature-images", {}) 
@@ -118,25 +103,12 @@ function App () {
     return response.text()
   }
   
-  (async() => {
-    var result = await natureImageScraper()
-    db = [];
-    result = JSON.parse(result)
-    result.forEach(function(item) {
-      db.push({
-        name: item,
-        url: item,
-        liked: false
-      })
-    })
-    localStorage.setItem("photos", JSON.stringify(db))
-  })()
-  
   if (localStorage.getItem("photos")) {
     db = JSON.parse(localStorage.getItem("photos"))
   } else {
     // default nature images (not from nature image web scraping)
     db = DEFAULT_IMAGES
+    localStorage.setItem("photos", JSON.stringify(db))
   }
 
   const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
@@ -163,7 +135,7 @@ function App () {
     {
       name: 'Refresh',
       description: 
-      'New set of nature images will be shown! But..sometimes it shows the same images, please wait and try again..!', 
+      'New set of nature images will be shown! But you need to wait for seconds..!', 
     }
   ]
 
@@ -190,7 +162,7 @@ function App () {
       // Make sure the next card gets removed next time if this card do not have time to exit the screen
       alreadyRemoved.push(toBeRemoved) 
       if (childRefs[index] === undefined) {
-        alert("Sorry! Your new set of images has been loaded now.")
+        alert("Sorry! the window will be refreshed!")
         window.location.reload()
       }
       childRefs[index].current.swipe(dir) // Swipe the card
@@ -201,6 +173,30 @@ function App () {
     setStyleChange(true)
   }
 
+  async function refresh() {
+    (async() => {
+      setLoading(true)
+      var result = await natureImageScraper()
+      db = [];
+      result = JSON.parse(result)
+      result.forEach(function(item) {
+        if (item !== null) {
+          db.push({
+            name: item,
+            url: item,
+            liked: false
+          })
+        }
+      })
+      localStorage.setItem("photos", JSON.stringify(db))
+      setLoading(false)
+      window.location.reload()
+    })()
+
+    //close the modal
+    setOpen(false)
+  }
+
   return (
     <div className="App">
       <HowToUseModal />
@@ -208,7 +204,8 @@ function App () {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet" />
       <h1>We <FcLike/> Nature</h1>
-
+      {loading ? (<Loader active size='massive' inline='centered'>Preparing New Images</Loader>)
+      :
       <div className='cardContainer'>
         {characters.map((character, index) =>
           <TinderCard 
@@ -217,17 +214,16 @@ function App () {
             key={character.name} 
             onSwipe={(dir) => swiped(dir, character.name)} 
             onCardLeftScreen={() => outOfFrame(character.name)}>
-            { character.url.startsWith('https://') && styleChange ? 
+            {character.url.startsWith('https://') && styleChange ? 
             <div style={{ backgroundImage: 'url(' + character.url 
               + '?brightness=-5&contrast=42&exposure=98&shadows=28&highlights=73&hue=36&saturation=-8&lightness=51)'}} 
               className='card'>
               <span>{character.name}</span></div> 
               : <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>
-              <span>{character.name}</span>
-            </div>} 
+              <span>{character.name}</span></div>}
           </TinderCard>
         )}
-      </div>
+      </div>}
       <div className='buttons'>
         <Popup
           key={buttonDescription[1].name}
@@ -250,7 +246,33 @@ function App () {
           content={buttonDescription[3].description}
           position='bottom center'
         />
-        <RefreshButton />
+        <Modal
+          basic
+          onClose={() => setOpen(false)}
+          onOpen={() => setOpen(true)}
+          open={open}
+          size='small'
+          trigger={<button className="refreshButton"><GrRefresh /></button>}
+        >
+        <Header icon>
+          <Icon name='question' />
+            Are you sure?
+        </Header>
+        <Modal.Content>
+          <p>
+            By pressing 'Refresh' button, you will see NEW set of nature images.
+            But you need to wait for seconds.
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button basic color='red' inverted onClick={() => setOpen(false)}>
+            <Icon name='remove' /> No
+          </Button>
+          <Button color='green' inverted onClick={() => refresh()}>
+            <Icon name='checkmark' /> Yes
+          </Button>
+        </Modal.Actions>
+        </Modal>
         
       </div>
       {lastDirection === 'left' ?
