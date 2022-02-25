@@ -130,7 +130,7 @@ function App () {
     {
       name: 'Change Style',
       description: 
-      'If you want to change the style of image(**only the images which have URL**), press this button!',
+      'Change the style of the image by pressing this button! If you click again, you can see the original one!',
     },
     {
       name: 'Refresh',
@@ -152,7 +152,7 @@ function App () {
   }
 
   const swipe = (dir) => {
-    setStyleChange(false)
+    // setStyleChange(false)
     const cardsLeft = characters.filter(person => !alreadyRemoved.includes(person.name))
     if (cardsLeft.length) {
       // Find the card object to be removed
@@ -170,7 +170,11 @@ function App () {
   }
 
   const imageStyleChange = () => {
-    setStyleChange(true)
+    if (styleChange === false) {
+      setStyleChange(true)
+    } else {
+      setStyleChange(false)
+    }
   }
 
   async function refresh() {
@@ -214,9 +218,9 @@ function App () {
             key={character.name} 
             onSwipe={(dir) => swiped(dir, character.name)} 
             onCardLeftScreen={() => outOfFrame(character.name)}>
-            {character.url.startsWith('https://') && styleChange ? 
-            <div style={{ backgroundImage: 'url(' + character.url 
-              + '?brightness=-5&contrast=42&exposure=98&shadows=28&highlights=73&hue=36&saturation=-8&lightness=51)'}} 
+            {styleChange ? 
+            <div style={{ backgroundImage: 'url(' + character.url + ')', 
+            filter: 'sepia(20)'}} 
               className='card'>
               <span>{character.name}</span></div> 
               : <div style={{ backgroundImage: 'url(' + character.url + ')' }} className='card'>

@@ -44,5 +44,16 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3"
+  },
+  "description": "\"We Love Nature\" for CS361(Software Engineering 1) project.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/positive235/CS361-we-love-nature.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/positive235/CS361-we-love-nature/issues"
   }
 }

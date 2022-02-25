@@ -38,7 +38,8 @@ function HowToUseModal() {
         </List.Item>
         <List.Item>
           <List.Header>STYLE Button</List.Header>
-          If you want to change the style of image **only the images which have URL**, press this button!
+          Change the style of the image by pressing this button! 
+          If you click again, you can see the original one!
         </List.Item>
         <List.Item>
           <List.Header><GrRefresh /> REFRESH button</List.Header>New set of nature images
@@ -64,7 +65,8 @@ function HowToUseModal() {
           </List.Item>
           <List.Item>
             <List.Header>STYLE Button</List.Header>
-            If you want to change the style of image **only the images which have URL**, press this 'Style' button.
+            Change the style of the image by pressing this button! 
+            If you click again, you can see the original one!
           </List.Item>
           <List.Item>
             <List.Header><GrRefresh /> REFRESH button</List.Header>
