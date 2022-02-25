@@ -6,6 +6,7 @@
 
 2. Users can see new set of nature images with Refresh button by using my microservice(Nature Image Web Scraper(https://github.com/positive235/CS361-image-web-scraper)). 
 
+3. Users can change the style of images by pressing Style button.
 
 ## Try it out (maybe it takes a while to load)
 
