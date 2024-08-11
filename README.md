@@ -8,9 +8,6 @@
 
 3. Users can change the style of images by pressing Style button.
 
-## Try it out (maybe it takes a while to load)
-
-https://positive235.github.io/CS361-we-love-nature/
 
 ## How To Run
 
